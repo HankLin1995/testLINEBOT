@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/classic.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/classic.date.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/classic.time.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f5f5f5; /* Light gray background */
+    }
+    .container {
+      background-color: #ffffff; /* White container background */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+      padding: 20px;
+      margin-top: 50px; /* Add top margin */
+      border-radius: 10px; /* Rounded corners */
+    }
+    .container h1 {
+      margin-bottom: 20px; /* Add some space between title and form */
+    }
+  </style>
+
+  <title>Bootstrap Form Example</title>
+</head>
+<body>
+
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <div class="container">
+    <h1><i class="fas fa-user-circle"></i> User Information Form2</h1>
+    <div id="userIdDisplay"><p>123</p></div>
+
+    <form>
+      <div class="form-group">
+        <label for="name"><i class="fas fa-user"></i> Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label for="dob"><i class="far fa-calendar-alt"></i> Date of Birth:</label>
+        <input type="date" class="form-control" id="dob">
+      </div>
+
+      <div class="form-group">
+        <label for="timepicker"><i class="far fa-clock"></i> Select Time (24-hour format):</label>
+        <input type="text" class="form-control" id="timepicker" placeholder="Select time">
+      </div>
+
+      <div class="form-group">
+        <label for="file"><i class="fas fa-file"></i> Upload File:</label>
+        <input type="file" class="form-control-file" id="file">
+      </div>
+
+      <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Submit</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.time.js"></script>
+  
+  <script>
+    $(document).ready(function () {
+      $('#timepicker').pickatime({
+        formatSubmit: 'HH:i',  // 24-hour format
+        hiddenName: true
+      });
+    });
+  </script>
+
+  <script>
+    
+      liff.init({
+        liffId: "2002792519-VPO5XAe8"
+      })
+      .then(() => {
+        window.alert("hello")
+      })
+      .catch((err) => {
+        window.alert("helloerr")
+      });
+   
+
+window.alert("helloend")
+
+  </script>
+
+<!-->
+<script>
+  //document.getElementById("userIdDisplay").innerHTML="444";
+
+  liff
+  .init({
+    liffId: "2002566613-1Gqzq5ee", // Use own liffId
+  })
+  .then(() => {
+    // Start to use liff's api
+    document.getElementById("userIdDisplay").innerHTML="init";
+  })
+  .catch((err) => {
+    // Error happens during initialization
+    //console.log(err.code, err.message);
+    document.getElementById("userIdDisplay").innerHTML="err";
+  });
+
+
+</script>
+
+<script>
+
+  liff.init(
+    { liffId:"2002566613-1Gqzq5ee" },
+    () => {
+      initLIFF();
+    },
+    err => {
+      window.alert(err);
+    }
+  );
+
+  function initLIFF() {
+    if (liff.isLoggedIn()) {
+      liff
+        .getProfile()
+        .then(profile => {
+          document.getElementById("userIdDisplay").innerHTML = "User ID: " + profile.userId;
+        })
+        .catch(e => {
+          // Handle any error during getProfile, and then initiate login
+          console.error("Error getting profile:", e);
+          liff.login({ redirectUri: window.location.href });  // Add redirectUri parameter
+        });
+    } else {
+      document.getElementById("userIdDisplay").innerHTML = "No data, Login first";
+    }
+  }
+</script>
+
+*/
+
+-->
+
+</body>
+</html>
