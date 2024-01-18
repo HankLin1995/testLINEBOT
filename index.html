@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,9 +10,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>CodePen - 物料管制申請範例</title>
-  <link rel="stylesheet" href="./style.css">
-
-  <title>Bootstrap Form Example</title>
 </head>
 
 <body>
@@ -21,7 +19,7 @@
       <h1><i class="fas fa-paperclip"></i> 工地物料管制申請單</h1>
       <div id="userIdDisplay"><p>YOUR_USER_ID</p></div>
     </div>
-    
+
     <form>
       <div class="form-group">
         <label for="name"><i class="fas fa-user"></i> 姓名:</label>
@@ -37,12 +35,12 @@
         <label for="timepicker"><i class="far fa-clock"></i> 起始時間:</label>
         <input type="text" class="form-control" id="timepicker" placeholder="09:00">
       </div>
-      
+
       <div class="form-group">
         <label for="timepicker"><i class="far fa-clock"></i> 結束時間:</label>
         <input type="text" class="form-control" id="timepicker2" placeholder="10:00">
       </div>
-      
+
       <div class="form-group">
         <label for="loc"><i class="fas fa-thumbtack"></i> 使用位置:</label>
         <select class="form-control" id="loc" name="location">
@@ -51,19 +49,15 @@
           <option value="other" selected=true>C大門</option>
         </select>
       </div>
-      
+
       <div class="form-group">
         <label for="loc"><i class="fas fa-toolbox"></i> 物料內容:</label>
         <input type="email" class="form-control" id="email" placeholder="鋁門窗=20組">
       </div>
-<!--       <div class="form-group">
-        <label for="file"><i class="fas fa-file"></i> Upload File:</label>
-        <input type="file" class="form-control-file" id="file">
-      </div> -->
 
-      <button type="submit" class="btn btn-success" onclick="submitForm()"></i> 開始申請</button>
+      <button type="submit" class="btn btn-success" onclick="submitForm()">開始申請</button>
     </form>
-  
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -73,14 +67,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.time.js"></script>
 
-<!-- partial -->
-  <script  src="./script.js"></script>
-
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
   <script>
-      // 在表單提交時觸發的函式
-    function submitForm(event) {
-      console.log('OK');
+    function submitForm() {
+      console.log('提交成功!');
       event.preventDefault();  // 防止表單正常提交
 
       // 獲取表單中的值
@@ -118,12 +109,14 @@
         console.error('發生錯誤:', error);
       });
     }
-  </script>
-  
-  <script>
 
-    liff.init(
-      { liffId:"2002566613-1Gqzq5ee" },
+    function hell() {
+      console.log('heee');
+    }
+
+    liff.init({
+        liffId: "2002566613-1Gqzq5ee"
+      },
       () => {
         initLIFF();
       },
@@ -131,7 +124,7 @@
         window.alert(err);
       }
     );
-  
+
     function initLIFF() {
       if (liff.isLoggedIn()) {
         liff
@@ -140,9 +133,10 @@
             document.getElementById("userIdDisplay").innerHTML = "User ID: " + profile.userId;
           })
           .catch(e => {
-            // Handle any error during getProfile, and then initiate login
             console.error("Error getting profile:", e);
-            liff.login({ redirectUri: window.location.href });  // Add redirectUri parameter
+            liff.login({
+              redirectUri: window.location.href
+            });
           });
       } else {
         document.getElementById("userIdDisplay").innerHTML = "No data, Login first2";
@@ -151,4 +145,5 @@
   </script>
 
 </body>
+
 </html>
