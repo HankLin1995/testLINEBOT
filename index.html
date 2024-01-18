@@ -80,6 +80,7 @@
   <script>
       // 在表單提交時觸發的函式
     function submitForm(event) {
+      console.log('OK');
       event.preventDefault();  // 防止表單正常提交
 
       // 獲取表單中的值
@@ -101,7 +102,7 @@
       };
 
       // 使用 Fetch API 發送 POST 請求
-      fetch('https://your-flask-api-endpoint/upload', {
+      fetch('https://script.google.com/macros/s/AKfycbykLii30LRrAykyHttNp7SK39SEi7TOOXvTp-b_LxnW3wQpVoz0IzlGwSFfZbIYdN8p/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
