@@ -78,6 +78,47 @@
 
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
+      // 在表單提交時觸發的函式
+    function submitForm(event) {
+      event.preventDefault();  // 防止表單正常提交
+
+      // 獲取表單中的值
+      var name = document.getElementById('name').value;
+      var dob = document.getElementById('dob').value;
+      var startTime = document.getElementById('timepicker').value;
+      var endTime = document.getElementById('timepicker2').value;
+      var location = document.getElementById('loc').value;
+      var materialContent = document.getElementById('email').value;
+
+      // 構建要發送的 JSON 資料
+      var formData = {
+        name: name,
+        dob: dob,
+        startTime: startTime,
+        endTime: endTime,
+        location: location,
+        materialContent: materialContent
+      };
+
+      // 使用 Fetch API 發送 POST 請求
+      fetch('https://your-flask-api-endpoint/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('API 回應:', data);
+        // 在這裡可以處理 API 回應，例如顯示成功訊息等
+      })
+      .catch(error => {
+        console.error('發生錯誤:', error);
+      });
+    }
+  </script>
+  
   <script>
 
     liff.init(
