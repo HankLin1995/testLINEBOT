@@ -9,14 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/themes/classic.time.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <title>CodePen - 物料管制申請範例</title>
+  <link rel="stylesheet" href="style.css">
+
+  <title>物料管制申請範例</title>
 </head>
 
 <body>
 
   <div class="container">
     <div class="top">
-      <h1><i class="fas fa-paperclip"></i> 工地物料管制申請單2</h1>
+      <h1><i class="fas fa-paperclip"></i> 工地物料管制申請單</h1>
       <div id="userIdDisplay"><p>YOUR_USER_ID</p></div>
     </div>
 
@@ -66,6 +68,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.date.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.time.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.time.js"></script>
+  <script src="script.js"></script>
 
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
@@ -92,56 +96,25 @@
         materialContent: materialContent
       };
 
-      // 使用 Fetch API 發送 POST 請求
-      fetch('https://script.google.com/macros/s/AKfycbykLii30LRrAykyHttNp7SK39SEi7TOOXvTp-b_LxnW3wQpVoz0IzlGwSFfZbIYdN8p/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      // 使用 Fetch API 发送 POST 请求到 Flask 后端
+      fetch('https://hanklin.pythonanywhere.com/submit_form', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
       })
       .then(response => response.json())
       .then(data => {
-        console.log('API 回應:', data);
-        // 在這裡可以處理 API 回應，例如顯示成功訊息等
+          console.log('API 回應:', data);
+          // 在这里可以处理 API 回应，例如显示成功消息等
       })
       .catch(error => {
-        console.error('發生錯誤:', error);
+          console.error('發生錯誤:', error);
       });
+
     }
 
-    function hell() {
-      console.log('heee');
-    }
-
-    liff.init({
-        liffId: "2002566613-1Gqzq5ee"
-      },
-      () => {
-        initLIFF();
-      },
-      err => {
-        window.alert(err);
-      }
-    );
-
-    function initLIFF() {
-      if (liff.isLoggedIn()) {
-        liff
-          .getProfile()
-          .then(profile => {
-            document.getElementById("userIdDisplay").innerHTML = "User ID: " + profile.userId;
-          })
-          .catch(e => {
-            console.error("Error getting profile:", e);
-            liff.login({
-              redirectUri: window.location.href
-            });
-          });
-      } else {
-        document.getElementById("userIdDisplay").innerHTML = "No data, Login first2";
-      }
-    }
   </script>
 
 </body>
