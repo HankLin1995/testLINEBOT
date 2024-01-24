@@ -73,6 +73,34 @@
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
   <script>
+
+    liff.init(
+      { liffId:"2002566613-1Gqzq5ee" },
+      () => {
+        initLIFF();
+      },
+      err => {
+        window.alert(err);
+      }
+    );
+
+    function initLIFF() {
+      if (liff.isLoggedIn()) {
+        liff
+          .getProfile()
+          .then(profile => {
+            document.getElementById("userIdDisplay").innerHTML = "User ID: " + profile.userId;
+          })
+          .catch(e => {
+            // Handle any error during getProfile, and then initiate login
+            console.error("Error getting profile:", e);
+            liff.login({ redirectUri: window.location.href });  // Add redirectUri parameter
+          });
+      } else {
+        document.getElementById("userIdDisplay").innerHTML = "No data, Login first";
+      }
+    }
+
     function submitForm() {
       console.log('提交成功!');
       event.preventDefault();  // 防止表單正常提交
@@ -105,8 +133,10 @@
       })
       .then(response => response.json())
       .then(data => {
-          console.log('API 回應:', data);
+          alert('API 回應:', data);
           // 在这里可以处理 API 回应，例如显示成功消息等
+          liff.closewindow();
+          
       })
       .catch(error => {
           console.error('發生錯誤:', error);
@@ -115,45 +145,18 @@
     }
 
     $(document).ready(function () {
-          $('#timepicker').pickatime({
-            formatSubmit: 'HH:i',  // 24-hour format
-            hiddenName: true
-          });
-        });
-    
-        $(document).ready(function () {
-          $('#timepicker2').pickatime({
-            formatSubmit: 'HH:i',  // 24-hour format
-            hiddenName: true
-          });
-        });
-    
-    liff.init(
-      { liffId:"2002566613-1Gqzq5ee" },
-      () => {
-        initLIFF();
-      },
-      err => {
-        window.alert(err);
-      }
-    );
-    
-    function initLIFF() {
-      if (liff.isLoggedIn()) {
-        liff
-          .getProfile()
-          .then(profile => {
-            document.getElementById("userIdDisplay").innerHTML = "User ID: " + profile.userId;
-          })
-          .catch(e => {
-            // Handle any error during getProfile, and then initiate login
-            console.error("Error getting profile:", e);
-            liff.login({ redirectUri: window.location.href });  // Add redirectUri parameter
-          });
-      } else {
-        document.getElementById("userIdDisplay").innerHTML = "No data, Login first";
-      }
-    }
+      $('#timepicker').pickatime({
+        formatSubmit: 'HH:i',  // 24-hour format
+        hiddenName: true
+      });
+    });
+
+    $(document).ready(function () {
+      $('#timepicker2').pickatime({
+        formatSubmit: 'HH:i',  // 24-hour format
+        hiddenName: true
+      });
+    });
 
   </script>
 
