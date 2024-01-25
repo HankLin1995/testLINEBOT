@@ -29,8 +29,8 @@
       </div>
 
       <div class="form-group">
-        <label for="dob"><i class="far fa-calendar-alt"></i> 申請日期:</label>
-        <input type="date" class="form-control" id="dob">
+        <label for="event_date"><i class="far fa-calendar-alt"></i> 申請日期:</label>
+        <input type="date" class="form-control" id="event_date">
       </div>
 
       <div class="form-group">
@@ -107,7 +107,7 @@
 
       // 獲取表單中的值
       var name = document.getElementById('name').value;
-      var dob = document.getElementById('dob').value;
+      var event_date = document.getElementById('event_date').value;
       var startTime = document.getElementById('timepicker').value;
       var endTime = document.getElementById('timepicker2').value;
       var location = document.getElementById('loc').value;
@@ -116,7 +116,7 @@
       // 構建要發送的 JSON 資料
       var formData = {
         name: name,
-        dob: dob,
+        event_date: event_date,
         startTime: startTime,
         endTime: endTime,
         location: location,
